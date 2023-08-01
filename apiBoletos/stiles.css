@@ -1,0 +1,107 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .recibo-caixa {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  /* Estilos do cabeçalho */
+  .cabecalho {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .banco-logo img {
+    max-width: 100px;
+  }
+  
+  .banco-codigo {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .bol-linha-digitavel {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Estilos do corpo */
+  .corpo {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .rotulo {
+    font-weight: bold;
+  }
+  
+  /* Estilos do rodapé */
+  .rodape {
+    width: 100%;
+  }
+  
+  .col-sacado {
+    width: 20%;
+  }
+  
+  .col-codigo-baixa {
+    width: 20%;
+  }
+  
+  .bol-codigo-barras {
+    text-align: center;
+  }
+  
+  /* Outros estilos */
+  .linha-grossa {
+    border-top: 2px solid #000;
+    font-weight: bold;
+  }
+  
+  .instrucoes-content {
+    margin-top: 10px;
+  }
+  
+  /* Estilos para o código de barras */
+  #barcode {
+    width: 100%;
+    height: 50px;
+    background-color: #ccc;
+  }
+  
+  /* Estilos para as imagens */
+  img {
+    max-width: 100%;
+  }
+  
+  /* Estilos para as tabelas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  td {
+    padding: 5px;
+    vertical-align: top;
+  }
+  
+  /* Estilos para os links */
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

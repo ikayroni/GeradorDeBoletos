@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Recibo do Banco</title>
+  <style>
+    /* Estilos gerais */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .recibo-caixa {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+
+    /* Estilos do cabeçalho */
+    .cabecalho {
+      width: 80%;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .banco-logo img {
+      max-width: 100px;
+    }
+
+    .banco-codigo {
+      text-align: center;
+      font-size: 12px;
+      font-weight: normal;
+      vertical-align: bottom;
+    }
+
+    .bol-linha-digitavel {
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      vertical-align: bottom;
+    }
+
+    /* Estilos do corpo */
+    .corpo {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .rotulo {
+      font-weight: bold;
+      height: 14px; /* Ajuste o valor de altura desejado */
+    }
+
+    /* Estilos do rodapé */
+    .rodape {
+      width: 80%;
+    }
+
+    .col-sacado {
+      width: 40%;
+    }
+
+    .col-codigo-baixa {
+      width: 40%;
+    }
+
+    .bol-codigo-barras {
+      text-align: center;
+    }
+
+    /* Outros estilos */
+    .linha-grossa {
+      border-top: 1px solid #000;
+      font-weight: bold;
+    }
+
+    .instrucoes-content {
+      margin-top: 10px;
+    }
+
+    /* Estilos para o código de barras */
+    #barcode {
+      width: 30%;
+      height: 10px;
+      background-color: #ccc;
+    }
+
+    /* Estilos para as imagens */
+    img {
+      max-width: 80%;
+    }
+
+    /* Estilos para as tabelas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 1px;
+      vertical-align: top;
+      border: 1px solid #ccc;
+      font-size: 11px;
+    }
+
+    /* Estilos para os links */
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilos responsivos */
+    @media only screen and (max-width: 600px) {
+      .cabecalho {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .banco-codigo {
+        margin-top: 10px;
+        font-size: 10px;
+      }
+
+      .bol-linha-digitavel {
+        font-size: 10px;
+      }
+    }
+
+    /* Estilo personalizado para ocultar os números abaixo do código de barras */
+    .bol-codigo-barras {
+      position: relative;
+    }
+
+    .bol-codigo-barras .bol-numeros-codigo {
+      position: absolute;
+      bottom: -20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="recibo-caixa">
+    <table class="cabecalho">
+      <tr>
+        <td class="banco-logo">
+          <!-- Lógica para exibir a logo correta com base no código do banco -->
+          <img src="media\logo_${codbanco}.jpg" alt="Logo do banco" id="logo-banco">
+          <script>
+            var codigoBanco = "${codbanco}";
+            var logoSrc;
+        
+            switch (codbanco) {
+              case "001":
+                logoSrc = "logo_bb.jpg";
+                break;
+              case "0104":
+                logoSrc = "logo_caixa.jpg";
+                break;
+              case "033":
+                logoSrc = "logo_santander.jpg";
+                break;
+              case "756":
+                logoSrc = "logo_sicoob.jpg";
+                break;
+              case "748":
+                logoSrc = "logo_sicred.jpg";
+                break;
+              default:
+                logoSrc = "logo_banrisul.jpg";
+                break;
+            }
+        
+            window.addEventListener("DOMContentLoaded", function() {
+              var imgElement = document.querySelector(".banco-logo img");
+              imgElement.src = logoSrc;
+            });
+          </script>
+        </td>
+        <td class="banco-codigo">
+          <div class="bol-linha-digitavel">Linha Digitavel</div>
+          ${linha_digitavel}
+        </td>
+      </tr>
+    </table>
+    <table class="corpo">
+      <tr>
+        <td colspan="5">
+          <div class="rotulo">Local de pagamento</div>
+          ${local_pagamento}
+        </td>
+        <td>
+          <div class="rotulo">Vencimento</div>
+          ${data_vencimento}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <div class="rotulo">Beneficiario</div>
+          ${cedente}
+        </td>
+        <td>
+          <div class="rotulo">Agencia/Conta</div>
+          ${agencia_conta_cedente}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="rotulo">Data do documento</div>
+          ${data_documento}
+        </td>
+        <td>
+          <div class="rotulo">N. do documento</div>
+          ${numero_documento}
+        </td>
+        <td>
+          <div class="rotulo">Especie doc</div>
+          ${especie_documento}
+        </td>
+        <td>
+          <div class="rotulo">Aceite</div>
+          ${aceite}
+        </td>
+        <td>
+          <div class="rotulo">Data processamento</div>
+          ${data_processamento}
+        </td>
+        <td>
+          <div class="rotulo">Nosso numero</div>
+          ${nosso_numero_format}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="rotulo">Codigo do Banco</div>
+          ${codbanco}
+        </td>
+        <td>
+          <div class="rotulo">Carteira</div>
+          ${carteira}
+        </td>
+        <td>
+          <div class="rotulo">Especie</div>
+          ${especie}
+        </td>
+        <td>
+          <div class="rotulo">Quantidade</div>
+          ${quantidade}
+        </td>
+        <td>
+          <div class="rotulo">Valor</div>
+          ${valor}
+        </td>
+        <td>
+          <div class="rotulo">(=) Valor documento</div>
+          ${valor_documento}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <div class="rotulo">Pagador</div>
+          ${pagador}
+        </td>
+        <td>
+          <div class="rotulo">CPF/CNPJ</div>
+          ${CPF_CNPJ}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <div class="rotulo">Instrucoes (Texto de responsabilidade do beneficiario). Qualquer duvida sobre este boleto, contate o beneficiario</div>
+          <div>${instrucoes}</div>
+      </tr>
+    </table>
+    <table class="rodape">
+      <tr>
+        <td class="bol-codigo-barras">
+          <img src="${codigo_barras}" alt="Código de Barras" style="max-width: 40%; max-height: 40%; object-fit: contain;">
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
